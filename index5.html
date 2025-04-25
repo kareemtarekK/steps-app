@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./src/style.css" />
+    <title>Vanilla js</title>
+  </head>
+  <body>
+    <button class="close">&times;</button>
+    <div class="steps">
+      <div class="numbers">
+        <div class="one">1</div>
+        <div class="two">2</div>
+        <div class="three">3</div>
+      </div>
+      <p class="message"></p>
+      <div class="buttons">
+        <button class="previous">Previous</button>
+        <button class="next">Next</button>
+      </div>
+    </div>
+    <script>
+      let step = 1;
+      // message array
+      const messages = [
+        "Learning React is fun and powerful! ⚛️",
+        "Your progress has been saved successfully 💾",
+        "Keep building, you're doing great! 🚀",
+      ];
+      // selecting elements
+      const one = document.querySelector(".one");
+      const two = document.querySelector(".two");
+      const three = document.querySelector(".three");
+      const p = document.querySelector("p");
+      const previous = document.querySelector(".previous");
+      const next = document.querySelector(".next");
+      const close = document.querySelector(".close");
+      const steps = document.querySelector(".steps");
+      // select text and display it into p
+      function selectText() {
+        p.textContent = `Step ${step}: ${messages[step - 1]}`;
+      }
+
+      // checking step and adding class active to the numbers
+      function checkingStep() {
+        if (step >= 1) one.classList.add("active");
+        else one.classList.remove("active");
+        if (step >= 2) two.classList.add("active");
+        else two.classList.remove("active");
+        if (step >= 3) three.classList.add("active");
+        else three.classList.remove("active");
+      }
+      // initial display text
+      selectText();
+      // initial checking step
+      checkingStep();
+      // handle next
+      function handleNext() {
+        if (step < 3) {
+          step += 1;
+          selectText();
+          checkingStep();
+        }
+      }
+      // handle previous
+      function handlePrevious() {
+        if (step > 1) {
+          step -= 1;
+          selectText();
+          checkingStep();
+        }
+      }
+      // handle toogle steps
+      function toggleSteps() {
+        steps.classList.toggle("toggle");
+      }
+
+      // add event listeners
+      next.addEventListener("click", handleNext);
+      previous.addEventListener("click", handlePrevious);
+      close.addEventListener("click", toggleSteps);
+    </script>
+  </body>
+</html>
