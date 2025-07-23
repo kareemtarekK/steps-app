@@ -32,17 +32,20 @@ export default function App() {
           <p className="message">
             Step {step}: {messages[step - 1]}
           </p>
-
           <div className="buttons">
-            <button className="active" onClick={handlePrevious}>
-              Previous
-            </button>
-            <button className="active" onClick={handleNext}>
-              Next
-            </button>
+            <Buttons onHandleClick={handlePrevious}>👈 Previous</Buttons>
+            <Buttons onHandleClick={handleNext}>👉 Next</Buttons>
           </div>
         </div>
       )}
     </>
+  );
+}
+
+function Buttons({ onHandleClick, children }) {
+  return (
+    <button className="active" onClick={onHandleClick}>
+      {children}
+    </button>
   );
 }
